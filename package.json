@@ -1,0 +1,8 @@
+{
+  "dependencies": {
+    "pnpm": "^11.0.9"
+  },
+  "devDependencies": {
+    "typescript": "^5"
+  }
+}
