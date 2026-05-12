@@ -1,0 +1,53 @@
+info:
+  name: Add Expense
+  type: http
+  seq: 1
+
+http:
+  method: POST
+  url: "{{base_url}}/expenses"
+  body:
+    type: json
+    data: |-
+      {
+        "householdId": "6820f01cbb35b39e0e8d1111",
+        "description": "Groceries",
+        "amountCents": 9000,
+        "currency": "CAD",
+        "splitMethod": "equal",
+        "payments": [
+          {
+            "userId": "6820f01cbb35b39e0e8d2222",
+            "amountCents": 9000
+          }
+        ],
+        "shares": [
+          {
+            "userId": "6820f01cbb35b39e0e8d2222",
+            "owedCents": 3000,
+            "paidCents": 9000,
+            "netCents": 6000
+          },
+          {
+            "userId": "6820f01cbb35b39e0e8d3333",
+            "owedCents": 3000,
+            "paidCents": 0,
+            "netCents": -3000
+          },
+          {
+            "userId": "6820f01cbb35b39e0e8d4444",
+            "owedCents": 3000,
+            "paidCents": 0,
+            "netCents": -3000
+          }
+        ],
+        "expenseDate": "2026-05-11T20:00:00Z",
+        "createdBy": "6820f01cbb35b39e0e8d2222"
+      }
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
