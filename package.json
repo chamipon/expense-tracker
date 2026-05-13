@@ -1,6 +1,8 @@
 {
 	"scripts": {
-		"env": "tsx scripts/sync-env.ts"
+		"env": "tsx scripts/sync-env.ts",
+        "dev": "pnpm -r --parallel dev",
+        "build": "pnpm -r build"
 	},
 	"dependencies": {
 		"pnpm": "^11.0.9"
