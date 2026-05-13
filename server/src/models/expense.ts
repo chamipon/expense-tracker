@@ -178,30 +178,41 @@ ExpenseSchema.index({
  * Validation
  */
 
-ExpenseSchema.pre("validate", function () {
-	const expense = this as IExpense;
-
-	const totalPaid = expense.payments.reduce(
+export function assertExpenseBalances(
+	amountCents: number,
+	payments: Pick<IPayment, "amountCents">[],
+	shares: Pick<IShare, "owedCents">[],
+): void {
+	const totalPaid = payments.reduce(
 		(sum, payment) => sum + payment.amountCents,
 		0,
 	);
 
-	const totalOwed = expense.shares.reduce(
+	const totalOwed = shares.reduce(
 		(sum, share) => sum + share.owedCents,
 		0,
 	);
 
-	if (totalPaid !== expense.amountCents) {
+	if (totalPaid !== amountCents) {
 		throw new Error(
-			`Payment total (${totalPaid}) does not equal expense amount (${expense.amountCents})`,
+			`Payment total (${totalPaid}) does not equal expense amount (${amountCents})`,
 		);
 	}
 
-	if (totalOwed !== expense.amountCents) {
+	if (totalOwed !== amountCents) {
 		throw new Error(
-			`Share total (${totalOwed}) does not equal expense amount (${expense.amountCents})`,
+			`Share total (${totalOwed}) does not equal expense amount (${amountCents})`,
 		);
 	}
+}
+
+ExpenseSchema.pre("validate", function () {
+	const expense = this as IExpense;
+	assertExpenseBalances(
+		expense.amountCents,
+		expense.payments,
+		expense.shares,
+	);
 });
 
 const Expense: Model<IExpense> =

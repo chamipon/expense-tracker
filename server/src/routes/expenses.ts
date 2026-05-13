@@ -3,6 +3,7 @@ import {
   createExpense,
   deleteExpense,
   getExpenses,
+  updateExpense,
 } from "../controllers/expenseController";
 
 const router = Router();
@@ -10,6 +11,8 @@ const router = Router();
 router.post("/", createExpense);
 
 router.get("/:id", getExpenses);
+
+router.put("/:id", updateExpense);
 
 router.delete("/:id", deleteExpense);
 

@@ -3,6 +3,7 @@ import {
   createHousehold,
   deleteHousehold,
   getHouseholds,
+  updateHousehold,
 } from "../controllers/householdController";
 
 const router = Router();
@@ -10,6 +11,8 @@ const router = Router();
 router.post("/", createHousehold);
 
 router.get("/:id", getHouseholds);
+
+router.put("/:id", updateHousehold);
 
 router.delete("/:id", deleteHousehold);
 

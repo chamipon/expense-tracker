@@ -40,6 +40,49 @@ export async function getUsers(req: Request, res: Response) {
 	}
 }
 
+export async function updateUser(req: Request, res: Response) {
+	try {
+		const id = pathParamId(req.params.id);
+		const body = req.body as Record<string, unknown>;
+
+		if (!id || !mongoose.Types.ObjectId.isValid(id)) {
+			return res.status(400).json({ message: "Invalid user id" });
+		}
+
+		if (!body || typeof body !== "object") {
+			return res.status(400).json({ message: "JSON body is required" });
+		}
+
+		const keys = Object.keys(body);
+		const unknown = keys.filter((k) => k !== "name");
+		if (unknown.length > 0) {
+			return res.status(400).json({
+				message: `Unknown fields: ${unknown.join(", ")}`,
+			});
+		}
+
+		if (typeof body.name !== "string" || !body.name.trim()) {
+			return res.status(400).json({ message: "name is required" });
+		}
+
+		const user = await User.findByIdAndUpdate(
+			id,
+			{ $set: { name: body.name.trim() } },
+			{ new: true, runValidators: true },
+		).lean();
+
+		if (!user) {
+			return res.status(404).json({ message: "User not found" });
+		}
+
+		return res.json(user);
+	} catch (error: any) {
+		return res.status(400).json({
+			message: error.message,
+		});
+	}
+}
+
 export async function deleteUser(req: Request, res: Response) {
 	try {
 		const id = pathParamId(req.params.id);
