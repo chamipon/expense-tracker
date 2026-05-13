@@ -3,5 +3,6 @@ packages:
   - 'frontend'
   - 'server'
 allowBuilds:
+  msw: true
   sharp: set this to true or false
   unrs-resolver: set this to true or false

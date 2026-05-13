@@ -3,10 +3,13 @@ import {
   createHousehold,
   deleteHousehold,
   getHouseholds,
+  listHouseholds,
   updateHousehold,
 } from "../controllers/householdController";
 
 const router = Router();
+
+router.get("/", listHouseholds);
 
 router.post("/", createHousehold);
 

@@ -4,6 +4,17 @@ import Expense from "../models/expense";
 import Household from "../models/household";
 import { pathParamId } from "../helpers/pathParamId";
 
+export async function listHouseholds(req: Request, res: Response) {
+	try {
+		const households = await Household.find().sort({ name: 1 }).lean();
+		return res.json(households);
+	} catch (error: any) {
+		return res.status(500).json({
+			message: error.message,
+		});
+	}
+}
+
 export async function createHousehold(req: Request, res: Response) {
 	try {
 		const household = new Household(req.body);
