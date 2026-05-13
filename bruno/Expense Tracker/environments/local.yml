@@ -1,4 +1,4 @@
 name: local
 variables:
   - name: base_url
-    value: http://localhost:3000
+    value: http://localhost:3001

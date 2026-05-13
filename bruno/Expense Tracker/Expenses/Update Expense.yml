@@ -1,17 +1,21 @@
 info:
-  name: Add Expense
+  name: Update Expense
   type: http
-  seq: 1
+  seq: 3
 
 http:
-  method: POST
-  url: "{{base_url}}/expenses"
+  method: PUT
+  url: "{{base_url}}/expenses/:id"
+  params:
+    - name: id
+      value: 6a02a99c8006499d7be0eb90
+      type: path
   body:
     type: json
     data: |-
       {
         "householdId": "6a02a111ef724c7d5fd3629d",
-        "description": "Groceries",
+        "description": "Groceries (updated)",
         "amountCents": 9000,
         "currency": "CAD",
         "splitMethod": "equal",
@@ -42,7 +46,7 @@ http:
           }
         ],
         "expenseDate": "2026-05-11T20:00:00Z",
-        "createdBy": "6820f01cbb35b39e0e8d2222"
+        "version": 1
       }
   auth: inherit
 

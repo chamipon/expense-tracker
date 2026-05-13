@@ -1,0 +1,19 @@
+info:
+  name: Delete User by Id
+  type: http
+  seq: 4
+
+http:
+  method: DELETE
+  url: "{{base_url}}/users/:id"
+  params:
+    - name: id
+      value: 6a02a92f8006499d7be0eb8e
+      type: path
+  auth: inherit
+
+settings:
+  encodeUrl: true
+  timeout: 0
+  followRedirects: true
+  maxRedirects: 5
