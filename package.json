@@ -1,8 +1,12 @@
 {
-  "dependencies": {
-    "pnpm": "^11.0.9"
-  },
-  "devDependencies": {
-    "typescript": "^5"
-  }
+	"scripts": {
+		"env": "tsx scripts/sync-env.ts"
+	},
+	"dependencies": {
+		"pnpm": "^11.0.9"
+	},
+	"devDependencies": {
+		"dotenv": "^17.4.2",
+		"typescript": "^5"
+	}
 }

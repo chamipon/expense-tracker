@@ -12,6 +12,9 @@ importers:
         specifier: ^11.0.9
         version: 11.0.9
     devDependencies:
+      dotenv:
+        specifier: ^17.4.2
+        version: 17.4.2
       typescript:
         specifier: ^5
         version: 5.9.3
@@ -61,9 +64,6 @@ importers:
       '@types/passport':
         specifier: ^1.0.17
         version: 1.0.17
-      dotenv:
-        specifier: ^17.4.2
-        version: 17.4.2
       express:
         specifier: ^5.2.1
         version: 5.2.1
@@ -83,6 +83,9 @@ importers:
       '@types/node':
         specifier: ^20.19.40
         version: 20.19.40
+      dotenv:
+        specifier: ^17.4.2
+        version: 17.4.2
 
 packages:
 
