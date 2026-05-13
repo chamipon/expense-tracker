@@ -4,6 +4,18 @@ import Expense from "../models/expense";
 import User from "../models/user";
 import { pathParamId } from "../helpers/pathParamId";
 
+
+export async function listUsers(req: Request, res: Response) {
+	try {
+		const users = await User.find().sort({ name: 1 }).lean();
+		return res.json(users);
+	} catch (error: any) {
+		return res.status(500).json({
+			message: error.message,
+		});
+	}
+}
+
 export async function createUser(req: Request, res: Response) {
 	try {
 		const user = new User(req.body);
